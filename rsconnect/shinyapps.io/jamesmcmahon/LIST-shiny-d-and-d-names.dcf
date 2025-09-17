@@ -1,0 +1,12 @@
+name: LIST-shiny-d-and-d-names
+title: LIST-shiny-d-and-d-names
+username: jamesmcmahon
+account: jamesmcmahon
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 15468059
+bundleId: 10916189
+url: https://jamesmcmahon.shinyapps.io/LIST-shiny-d-and-d-names/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
