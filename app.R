@@ -20,11 +20,11 @@ names <- names |>
 # ////////////////////////////////////////////////////////////////////////////
 ui <- fluidPage(
   titlePanel(title = "D&D Names 🐲"),
-        textInput("name-input", "Your Name"),
-        radioButtons("class-buttons", "Class", choices = unique(names$class)),
-        radioButtons("race-buttons", "Race", choices = unique(names$race)),
+        textInput("name_input", "Your Name"),
+        radioButtons("class_buttons", "Class", choices = unique(names$class)),
+        radioButtons("race_buttons", "Race", choices = unique(names$race)),
         actionButton("show_text", "Go go magic name generator!"),
-        textOutput("name-output")
+        textOutput("name_output")
 )
 
 # ////////////////////////////////////////////////////////////////////////////
@@ -34,18 +34,18 @@ server <- function(input, output, session) {
   text_reactive <- eventReactive(input$show_text, {
     dd_name <- names |> 
       filter(
-        class == input$class-buttons,
-        race == input$race-buttons,
-        stringr::str_detect(name, input$name-input, negate = TRUE)
+        class == input$class_buttons,
+        race == input$race_buttons,
+        str_detect(name, input$name_input, negate = TRUE)
       ) |> 
-      mutate(dist = stringdist::stringdist(input$name-input, name))  |>
+      mutate(dist = stringdist(input$name_input, name))  |>
       slice_min(dist, n = 1, with_ties = FALSE) |> 
       pull(name)
     
     return(dd_name)
   })
   
-  output$name-output <- renderText({
+  output$name_output <- renderText({
     text_reactive()
   })
 }
